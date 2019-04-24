@@ -1,34 +1,118 @@
-﻿using ApiRESTSwagger.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
+using ApiRESTSwagger.Models;
 
 namespace ApiRESTSwagger.Controllers
 {
     public class UsuariosController : ApiController
     {
-        Usuarios[] usuarios = new Usuarios[]{
-            new Usuarios { ID = 1, Name = "Mark", Age = 30 },
-            new Usuarios { ID = 2, Name = "Allan", Age = 35 },
-            new Usuarios { ID = 3, Name = "Johny", Age = 21 }
-        };
+        private Model1 db = new Model1();
 
-        public IEnumerable<Usuarios> GetAllEmployees()
+        // GET: api/UsuariosEntFram
+        public IQueryable<Usuarios> GetUsuarios()
         {
-            return usuarios;
+            return db.Usuarios;
         }
 
-        public IHttpActionResult GetEmployee(int id)
+        // GET: api/UsuariosEntFram/5
+        [ResponseType(typeof(Usuarios))]
+        public IHttpActionResult GetUsuarios(int id)
         {
-            var employee = usuarios.FirstOrDefault((p) => p.ID == id);
-            if (employee == null)
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
             {
                 return NotFound();
             }
-            return Ok(employee);
+
+            return Ok(usuarios);
+        }
+
+        // PUT: api/UsuariosEntFram/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutUsuarios(int id, Usuarios usuarios)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != usuarios.ID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(usuarios).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsuariosExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/UsuariosEntFram
+        [ResponseType(typeof(Usuarios))]
+        public IHttpActionResult PostUsuarios(Usuarios usuarios)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Usuarios.Add(usuarios);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = usuarios.ID }, usuarios);
+        }
+
+        // DELETE: api/UsuariosEntFram/5
+        [ResponseType(typeof(Usuarios))]
+        public IHttpActionResult DeleteUsuarios(int id)
+        {
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
+            {
+                return NotFound();
+            }
+
+            db.Usuarios.Remove(usuarios);
+            db.SaveChanges();
+
+            return Ok(usuarios);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool UsuariosExists(int id)
+        {
+            return db.Usuarios.Count(e => e.ID == id) > 0;
         }
     }
 }

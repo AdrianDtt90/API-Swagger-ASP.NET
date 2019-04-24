@@ -85,7 +85,6 @@ C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\es\System.Web.Razor.resou
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\es\System.Web.WebPages.resources.dll
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\obj\Debug\ApiRESTSwagger.csprojAssemblyReference.cache
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\obj\Debug\ApiRESTSwagger.csproj.CoreCompileInputs.cache
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\obj\Debug\ApiRESTSwagger.csproj.CopyComplete
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\obj\Debug\ApiRESTSwagger.dll
@@ -98,3 +97,16 @@ C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\Swashbuckle.Core.dll
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\System.Web.Http.Owin.dll
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\System.Web.Http.Owin.xml
 C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\ApiRESTSwagger.xml
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\EntityFramework.dll
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\EntityFramework.SqlServer.dll
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\EntityFramework.xml
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\EntityFramework.SqlServer.xml
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\Google.Protobuf.dll
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\MySql.Data.dll
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\Google.Protobuf.xml
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\MySql.Data.xml
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\MySql.Data.EntityFramework.dll
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\MySql.Data.EntityFramework.xml
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\MySql.Data.Entity.EF6.dll
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\bin\MySql.Data.Entity.EF6.xml
+C:\Users\adrid_000\Documents\CSharp\ApiRESTSwagger\obj\Debug\ApiRESTSwagger.csprojAssemblyReference.cache

@@ -15,8 +15,9 @@ Ya swagger esta andando
 
 LO DE RECIEN ESTA ACA: https://code.msdn.microsoft.com/Swagger-integration-in-da408b29
 
+----------------------------------------------------------
 Seguimos...
--------------------------------------------------------
+----------------------------------------------------------
 MODELO
 Click derecho en "Models" -> agregar elemento -> Class
 y le agregamos los atributos
@@ -58,3 +59,49 @@ y podremos ver los datos que entrega la API
 (si entramos al swagger, tmb lo veremos)
 
 LO DE RECIEN ESTA ACA: https://www.tutorialspoint.com/asp.net_mvc/asp.net_mvc_web_api.htm
+
+----------------------------------------------------------
+Ahora agregamos DB
+----------------------------------------------------------
+Vamos a Herramientas -> Adm de NuGet -> instalamos Entity framework
+
+Agregamos la BD 
+Click derecho en pryecto -> agregar elemento -> ADO Model Entity (elejimos nombre Ej.: Model1)
+Luego "Modelo vacio de Code First" (Para crear las clases y a partir de eso los modelos (diagrama DB) y Tablas en DB)
+
+Dentro del archvo creado en base("name=Model1") hace referencia al string de conexion creado en web.config, alli mismo cambiarlo por el de mySql
+luego agregar ahi mismo luego del :base el modelo q tengamos
+    public DbSet<Usuarios> Usuarios { get; set; }
+
+Luego a la derecha en "Explirador de Servidores" conectar con la BD 
+Agregamos una nueva conexion
+Lo que nos interesa es el string de conexion q que pondremos en el web.config
+
+Ahora creamos OTRO controller en el cual se va a relacion con Entity Framework
+    "Controller" -> Controlador... -> Web API 2 controller con acciones y Entity Framework
+    (ahi mismo estará la conexión q cremoas: private Model1 db = new Model1();)
+
+Elegimos la clase que creamos (en este caso Usuarios)
+y en el segundo si no hay nada campo apretar "+" ponemos le nombre del contexto (conexión con DB) y aceptar.
+
+(dejamos el UsuarioController para el nuevo y el anterior lo cambiamos a UsuarioControlerNoDB)
+
+Instalar packetes:
+    MySql.Data
+    MySql.Data.EntityFramework
+
+Luego en web.config:
+    <entityFramework codeConfigurationType="MySql.Data.Entity.MySqlEFConfiguration, MySql.Data.Entity.EF6">
+        <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+        <providers>
+        <!--<provider invariantName="MySql.Data.MySqlClient" type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.Entity.EF6" />-->
+        <!--<provider invariantName="MySql.Data.MySqlClient" type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.Entity.EF6, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"></provider>-->
+        <provider invariantName="MySql.Data.MySqlClient" type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.EntityFramework, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
+        </provider></providers>
+    </entityFramework>
+
+Finalmente (y porq no pude), crear la tabla en la BD jajaja me doy por vencido!!
+
+Probar ingresar por POST usuario y veras que anda ;)
+
+PD.: queda pendiente crear BD a partir de "Code First" pero es un tema de config de BD.
