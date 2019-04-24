@@ -1,0 +1,60 @@
+Nuevo proyecto
+    ASP.NET Web Application (.NET Framework)
+    API Web
+
+Herramientas -> Administración de NuGet -> Consola
+    Install-Package Swashbuckle
+y luego
+    Install-Package Microsoft.AspNet.WebApi.Owin -Version 5.2.7
+
+Click derecho al proyecto, propiedades, Build y habilitar XML y guardar (para después)
+
+Ya si ejecutamos y ponemos
+    http://localhost:<PORT>/swagger
+Ya swagger esta andando
+
+LO DE RECIEN ESTA ACA: https://code.msdn.microsoft.com/Swagger-integration-in-da408b29
+
+Seguimos...
+-------------------------------------------------------
+MODELO
+Click derecho en "Models" -> agregar elemento -> Class
+y le agregamos los atributos
+EJ:
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+CONTROLLER
+Click derecho en "Controller" -> Controlador... -> Controlador de Web API 2 - en blanco
+Ingresamos <nombre>Controller y aceptar
+EJ.:
+    public class UsuariosController : ApiController
+    {
+        Usuarios[] usuarios = new Usuarios[]{
+            new Usuarios { ID = 1, Name = "Mark", Age = 30 },
+            new Usuarios { ID = 2, Name = "Allan", Age = 35 },
+            new Usuarios { ID = 3, Name = "Johny", Age = 21 }
+        };
+
+        public IEnumerable<Usuarios> GetAllEmployees()
+        {
+            return usuarios;
+        }
+
+        public IHttpActionResult GetEmployee(int id)
+        {
+            var employee = usuarios.FirstOrDefault((p) => p.ID == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return Ok(employee);
+        }
+    }
+
+Con esto mismo ejecutamos y abrimos
+    http://localhost:<PORT>/api/usuarios/
+y podremos ver los datos que entrega la API
+(si entramos al swagger, tmb lo veremos)
+
+LO DE RECIEN ESTA ACA: https://www.tutorialspoint.com/asp.net_mvc/asp.net_mvc_web_api.htm
